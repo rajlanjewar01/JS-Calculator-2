@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>JS</title>
+    <Style>
+        img {
+            max-width: 200px;
+        }
+
+        #slider li {
+            display: none;
+            list-style: none;
+        }
+
+        #dots li {
+            list-style: none;
+            display: inline-block;
+            border: 1px solid red;
+            margin-right: 10px;
+            padding: 2px 5px;
+            cursor: pointer;
+        }
+    </Style>
+    <script>
+        var slides = [
+            {
+                id: '0',
+                url: 'hair.png',
+                title: 'Image1',
+            },
+            {
+                id: '0',
+                url: 'prebridal.png',
+                title: 'Hemant',
+            }, {
+                id: '0',
+                url: 'dp1.jpg',
+                title: 'Harish',
+            }
+        ];
+        function sliderDots(slide) {
+            console.log(document.querySelectorAll('.slides').length);
+            document.querySelectorAll('.slides').forEach(function (item) {
+                if (item.id == 'slide' + slide) {
+                    document.getElementById(item.id).style.display = 'block';
+                }
+                else {
+                    document.getElementById(item.id).style.display = 'none';
+                }
+            })
+        }
+        function slider(slides, currentSlide) {
+            if (slides.length > 0) {
+                var slide = '';
+                var dots = '';
+                for (var i = 0; i < slides.length; i++) {
+                    var currentElement = i === currentSlide ? 'block' : 'none';
+                    slide += '<div id="slide' + i + '" class="slides" style="display: ' + currentElement + '"><img src="' + slides[i].url + '" title="' + slides[i].title + '" /></div>'
+                    dots += '<div onclick="sliderDots(' + i + ');" id="dot' + i + '">' + i + '</div>';
+                }
+                document.getElementById('slider').innerHTML = slide;
+                document.getElementById('dots').innerHTML = dots;
+            }
+        }                   
+    </script>
+</head>
+
+<body>
+    <div id="slider"></div>
+    <div id="dots"></div>
+    <script>
+        slider(slides, 0);
+    </script>
+</body>
+
+</html>
